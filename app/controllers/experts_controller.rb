@@ -1,7 +1,7 @@
 class ExpertsController < ApplicationController
 
   #before_action :require_user, only: [:new, :create, :edit, :update, :friends, :add_friend, :remove_friend]
-  before_action :get_expert, only: [:show, :edit, :update, :friends, :add_friend, :remove_friend]
+  before_action :get_expert, only: [:show, :edit, :update, :friends, :add_friend, :remove_friend, :search_experts]
 
   def index
     @experts = Expert.all
@@ -43,6 +43,10 @@ class ExpertsController < ApplicationController
       friendship.destroy
     end
     redirect_to @expert
+  end
+
+  def search_experts
+    @topic_experts = @expert.topic_experts(params[:q])
   end
 
   private
