@@ -1,0 +1,13 @@
+<h1><%= @expert.name %> : Friends</h1>
+<div>
+  <% @experts.each do |expert| %>
+    <div>
+      <% if @expert.friends.include?(expert) %>
+        <%= link_to "-", remove_friend_expert_path(expert.id) %>
+      <% else %>
+        <%= link_to "+", add_friend_expert_path(expert.id) %>
+      <% end %>
+      <%= expert.name %>
+    </div>
+  <% end %>
+</div>
