@@ -37,6 +37,6 @@ class Expert < ApplicationRecord
   end
 
   def friends
-    []
+    Friendship.where(expert_1_id: id).map{|f| f.expert_2} + Friendship.where(expert_2_id: id).map{|f| f.expert_1}
   end
 end

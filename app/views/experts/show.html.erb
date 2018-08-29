@@ -10,3 +10,9 @@
   <% end %>
 </div>
 <h2>Friends</h2>
+<% if current_user %>
+  <%= link_to "Edit Friends", friends_expert_path(@expert) %>
+<% end %>
+<% @expert.friends.each do |friend| %>
+  <div><%= link_to friend.name, expert_path(friend) %></div>
+<% end %>
