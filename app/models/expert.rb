@@ -31,7 +31,7 @@ class Expert < ApplicationRecord
   end
 
   def generate_short_url
-    bitly = Bitly.new('dbii',ENV["SHORTENER_API_KEY"])
+    bitly = Bitly.new(ENV["SHORTENER_USERNAME"],ENV["SHORTENER_API_KEY"])
     response = bitly.shorten(url)
     self.short_url = response.short_url
   end
