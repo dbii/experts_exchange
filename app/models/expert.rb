@@ -35,4 +35,8 @@ class Expert < ApplicationRecord
     response = bitly.shorten(url)
     self.short_url = response.short_url
   end
+
+  def friends
+    []
+  end
 end
