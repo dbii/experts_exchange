@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :experts do
     member do
       get "friends"
+      get "search_experts"
     end
   end
 

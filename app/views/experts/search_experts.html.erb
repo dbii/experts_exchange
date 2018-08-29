@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= @expert.name %></h1>
+  </div>
+</div>
+<% @topic_experts.each do |te| %>
+  <%= te.name %><br/>
+<% end %>

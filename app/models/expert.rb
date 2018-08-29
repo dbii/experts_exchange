@@ -39,4 +39,10 @@ class Expert < ApplicationRecord
   def friends
     Friendship.where(expert_1_id: id).map{|f| f.expert_2} + Friendship.where(expert_2_id: id).map{|f| f.expert_1}
   end
+
+  def topic_experts(a_topic)
+    friend_ids = [11,12,13,1]
+    Topic.includes(:expert).where("content ilike ?", "%#{a_topic}%").where.not("experts.id": id).where.not("experts.id": friend_ids).map{|t| t.expert }
+  end
+
 end
