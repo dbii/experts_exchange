@@ -33,3 +33,26 @@ Testing uses rspec:
 ## URL Fetching and Parsing
 
 We use open-uri with Nokogiri for URL fetching and parsing
+
+# TODO
+
+## Features
+
+3. Friend setup
+3. search
+2. Node walking
+
+## Robustness
+
+1. Validation on Expert URL, existence, formatting, etc.
+
+## Scalability
+
+1. Save Expert does an inline URL grab and parse
+1. Save Expert does an inline URL Shortening
+
+## Future Deprecations
+
+1. Bitly is switching to OAuth from API keys, so that will need to be changed in future versions.
+
+

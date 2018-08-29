@@ -1,0 +1,9 @@
+<h1>Create Expert</h1>
+<%= form_for(
+        @expert,
+        url: experts_path,
+        ) do |f| %>
+  Name: <%= f.text_field :name %><br/>
+  URL: <%= f.text_field :url %>
+  <%= f.submit 'Add Expert' %>
+<% end %>

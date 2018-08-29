@@ -1,0 +1,6 @@
+<h1>Experts</h1>
+<% @experts.each do |expert| %>
+  <%= link_to expert.name, expert %> -
+  <%= expert.short_url %> - <%= 'friend count' %>
+  <br/>
+<% end %>

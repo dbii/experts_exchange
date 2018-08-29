@@ -1,0 +1,10 @@
+<h1>Update Expert</h1>
+<%= form_for(
+        @expert,
+        url: expert_path,
+        method: :patch
+        ) do |f| %>
+  Name: <%= f.text_field :name %><br/>
+  URL: <%= f.text_field :url %>
+  <%= f.submit 'Update Expert' %>
+<% end %>
