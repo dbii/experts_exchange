@@ -16,7 +16,7 @@ class ExpertsController < ApplicationController
   end
 
   def create
-    Expert.create(expert_params)
+    @expert = Expert.create(expert_params)
     redirect_to @expert
   end
 
