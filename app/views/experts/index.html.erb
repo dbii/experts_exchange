@@ -1,10 +1,11 @@
+<% if current_user %>
 <div class="float-right">
   <%= link_to "Add Expert", new_expert_path, class: 'btn btn-primary btn-sm mt-2' %>
 </div>
-
+<% end %>
 <h1>Experts</h1>
 <% @experts.each do |expert| %>
   <%= link_to expert.name, expert %> -
-  <%= expert.short_url %> - <%= 'friend count' %>
+  <%= expert.short_url %> - <%= expert.friends.count %> friends
   <br/>
 <% end %>
