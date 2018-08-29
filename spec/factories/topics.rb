@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :topic do
-    expert_id 1
-    tag "MyString"
-    content "MyString"
+    expert
+    tag {"h1"}
+    content {"Dog training"}
   end
 end

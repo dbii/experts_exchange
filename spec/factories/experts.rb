@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :expert do
-    name "MyString"
-    url "MyString"
-    short_url "MyString"
+    name {"Jane Expert"}
+    url {"https://en.wikipedia.org/wiki/Dog_training"}
   end
 end
