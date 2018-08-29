@@ -1,0 +1,9 @@
+.alert-notice {
+    color: green;
+    background-color: #e0ffe0
+}
+
+.alert-error {
+    color: black;
+    background-color: #ffe0e0
+}
