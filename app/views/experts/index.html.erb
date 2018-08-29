@@ -1,3 +1,7 @@
+<div class="float-right">
+  <%= link_to "Add Expert", new_expert_path, class: 'btn btn-primary btn-sm mt-2' %>
+</div>
+
 <h1>Experts</h1>
 <% @experts.each do |expert| %>
   <%= link_to expert.name, expert %> -
