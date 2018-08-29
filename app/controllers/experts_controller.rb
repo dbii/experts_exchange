@@ -1,6 +1,6 @@
 class ExpertsController < ApplicationController
 
-  before_action :require_user, only: [:new, :create, :edit, :update, :friends, :add_friend, :remove_friend]
+  #before_action :require_user, only: [:new, :create, :edit, :update, :friends, :add_friend, :remove_friend]
   before_action :get_expert, only: [:show, :edit, :update, :friends, :add_friend, :remove_friend]
 
   def index
