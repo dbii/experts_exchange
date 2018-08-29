@@ -1,4 +1,7 @@
 class ExpertsController < ApplicationController
+
+  before_action :require_user
+
   def index
     @experts = Expert.all
   end

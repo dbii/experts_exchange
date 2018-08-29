@@ -7,7 +7,9 @@
 
     <div id="navbarSupportedContent" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><%= link_to 'Experts', experts_path, class: 'nav-link' %>
+        <%- if current_user %>
+          <li class="nav-item"><%= link_to 'Experts', experts_path, class: 'nav-link' %>
+        <% end %>
       </ul>
 
       <ul class="navbar-nav mr-auto justify-content-end">

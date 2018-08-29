@@ -12,6 +12,13 @@
   <body>
     <%= render partial: 'shared/navigation' %>
     <div class="container">
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type %> alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= message %>
+        </div>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>
