@@ -7,8 +7,8 @@ class Expert < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :url, presence: true
 
+  after_validation :generate_short_url
   after_create :get_topics
-  after_create :generate_short_url
 
   def get_topics
     page = Nokogiri::HTML(open(url))
