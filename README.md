@@ -1,24 +1,58 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Configuration
 
-Things you may want to cover:
+- Ruby 2.4.4
+- Rails 2.5.2
+- postgresql
 
-* Ruby version
+### ENV file
 
-* System dependencies
+Create a .env file with the following values:
 
-* Configuration
+`SHORTENER_USERNAME`
 
-* Database creation
+the bitly USERNAME on the account for the API key
 
-* Database initialization
+`SHORTENER_API_KEY`
 
-* How to run the test suite
+the bitly API key.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Services
 
-* Deployment instructions
+### URL Shortening
 
-* ...
+We use bitly for URL shortening since goo.gl is being deprecated.
+
+## Testing
+
+Testing uses rspec:
+
+`rspec spec`
+
+## URL Fetching and Parsing
+
+We use open-uri with Nokogiri for URL fetching and parsing
+
+# TODO
+
+## Features
+
+3. Friend setup
+3. search
+2. Node walking
+
+## Robustness
+
+1. Validation on Expert URL, existence, formatting, etc.
+
+## Scalability
+
+1. Save Expert does an inline URL grab and parse
+1. Save Expert does an inline URL Shortening
+
+## Future Deprecations
+
+1. Bitly is switching to OAuth from API keys, so that will need to be changed in future versions.
+
+

@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= @expert.name %></h1>
+    <%= link_to @expert.url, @expert.url %>
+      <% if @expert.short_url %>
+        <div><%= link_to @expert.short_url, @expert.short_url %></div>
+      <% end %>
+  </div>
+</div>
+
+<p>
+  <%= form_for(
+          @expert,
+          url: search_experts_expert_path,
+          method: :get,
+          ) do |f| %>
+    Skill: <%= text_field_tag :q %>
+    <%= f.submit 'Search', class: 'btn btn-sm btn-primary' %>
+  <% end %>
+</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2>Topics</h2>
+    <% @expert.topics.each do |topic| %>
+      <div><%= topic.content %></div>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <h2>Friends</h2>
+
+    <% @expert.friends.each do |friend| %>
+      <p>
+        <%- if current_user %>
+          <%= link_to "-", remove_friend_experts_path(@expert.id, friend.id), method: :delete, class: 'btn btn-sm btn-primary' %>
+        <% end %>
+        <%= link_to friend.name, expert_path(friend) %>
+      </p>
+    <% end %>
+  </div>
+</div>

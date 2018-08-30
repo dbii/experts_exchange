@@ -1,0 +1,23 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-md">
+  <div class="container">
+    <%= link_to 'EE', root_path, class: 'navbar-brand' %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><%= link_to 'Experts', experts_path, class: 'nav-link' %>
+      </ul>
+
+      <ul class="navbar-nav mr-auto justify-content-end">
+        <%- if current_user %>
+          <li class="nav-item"><%= link_to 'Logout', logout_path, class: 'nav-link' %></li>
+        <%- else %>
+          <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link' %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
