@@ -4,5 +4,8 @@
   </div>
 </div>
 <% @topic_experts.each do |te| %>
+  <%- if current_user %>
+    <%= link_to "+", add_friend_experts_path(@expert.id, te.id), method: :post, class: 'btn btn-sm btn-primary' %>
+  <% end %>
   <%= te.name %><br/>
 <% end %>

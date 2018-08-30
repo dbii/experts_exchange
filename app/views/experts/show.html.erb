@@ -7,14 +7,17 @@
       <% end %>
   </div>
 </div>
-<%= form_for(
-        @expert,
-        url: search_experts_expert_path,
-        method: :get,
-        ) do |f| %>
-  Name: <%= text_field_tag :q %><br/>
-  <%= f.submit 'Search' %>
-<% end %>
+
+<p>
+  <%= form_for(
+          @expert,
+          url: search_experts_expert_path,
+          method: :get,
+          ) do |f| %>
+    Skill: <%= text_field_tag :q %>
+    <%= f.submit 'Search', class: 'btn btn-sm btn-primary' %>
+  <% end %>
+</p>
 
 <div class="row">
   <div class="col-md-6">
@@ -25,15 +28,15 @@
   </div>
 
   <div class="col-md-6">
-    <div class="float-right">
-      <% if current_user %>
-        <%= link_to "Edit Friends", friends_expert_path(@expert), class: "btn btn-primary" %>
-      <% end %>
-    </div>
     <h2>Friends</h2>
 
     <% @expert.friends.each do |friend| %>
-      <div><%= link_to friend.name, expert_path(friend) %></div>
+      <p>
+        <%- if current_user %>
+          <%= link_to "-", remove_friend_experts_path(@expert.id, friend.id), method: :delete, class: 'btn btn-sm btn-primary' %>
+        <% end %>
+        <%= link_to friend.name, expert_path(friend) %>
+      </p>
     <% end %>
   </div>
 </div>
