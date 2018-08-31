@@ -18,5 +18,9 @@ RSpec.describe Friendship, type: :model do
     it "requires expert 2" do
       expect(Friendship.new(valid_attributes.merge(expert_2_id: nil))).not_to be_valid
     end
+
+    it "doesn't allow experts to be friends with themselves" do
+      expect(Friendship.new(valid_attributes.merge(expert_2_id: expert_1.id))).not_to be_valid
+    end
   end
 end
