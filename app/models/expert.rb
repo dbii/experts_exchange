@@ -10,22 +10,24 @@ class Expert < ApplicationRecord
   after_validation :generate_short_url
   after_create :get_topics
 
+  UNDESIRED_CONTENT = ['more', 'view', 'search', 'contents']
+
   def get_topics
     page = Nokogiri::HTML(open(url))
 
     page.css('h1').each do |element|
       content = element.content
-      next if content.blank?
+      next if content.blank? || UNDESIRED_CONTENT.include?(content.downcase)
       topics.create(tag: 'h1', content: content)
     end
     page.css('h2').each do |element|
       content = element.content
-      next if content.blank?
+      next if content.blank? || UNDESIRED_CONTENT.include?(content.downcase)
       topics.create(tag: 'h3', content: content)
     end
     page.css('h3').each do |element|
       content = element.content
-      next if content.blank?
+      next if content.blank? || UNDESIRED_CONTENT.include?(content.downcase)
       topics.create(tag: 'h3', content: content)
     end
   end
@@ -41,8 +43,13 @@ class Expert < ApplicationRecord
   end
 
   def topic_experts(a_topic)
-    friend_ids = [11,12,13,1]
-    Topic.includes(:expert).where("content ilike ?", "%#{a_topic}%").where.not("experts.id": id).where.not("experts.id": friend_ids).map{|t| t.expert }
+    word_atoms = a_topic.split
+    friend_ids = Friendship.where(expert_1_id: id).map{|f| f.expert_2_id} + Friendship.where(expert_2_id: id).map{|f| f.expert_1_id}
+    matching_topics = Topic.includes(:expert).where.not("experts.id": id).where.not("experts.id": friend_ids)
+    word_atoms.each do |atom|
+      matching_topics = matching_topics.where("content ilike ?", "%#{atom}%")
+    end
+    matching_topics.map{|t| t.expert }
   end
 
 end

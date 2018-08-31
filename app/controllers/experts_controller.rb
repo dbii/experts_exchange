@@ -47,6 +47,7 @@ class ExpertsController < ApplicationController
 
   def search_experts
     @topic_experts = @expert.topic_experts(params[:q])
+    @search_term = params[:q]
   end
 
   private
