@@ -33,9 +33,17 @@ class Expert < ApplicationRecord
   end
 
   def generate_short_url
-    bitly = Bitly.new(ENV["SHORTENER_USERNAME"],ENV["SHORTENER_API_KEY"])
-    response = bitly.shorten(url)
-    self.short_url = response.short_url
+    if url.blank?
+      errors.add :url, "can't be blank."
+    else
+      begin
+        bitly = Bitly.new(ENV["SHORTENER_USERNAME"],ENV["SHORTENER_API_KEY"])
+        response = bitly.shorten(url)
+        self.short_url = response.short_url
+      rescue BitlyError => e
+        errors.add :url, e.message
+      end
+    end
   end
 
   def friends

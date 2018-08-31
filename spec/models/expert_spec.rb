@@ -18,5 +18,9 @@ RSpec.describe Expert, type: :model do
       expect(expert).not_to be_valid
     end
 
+    it "should handle invalid urls" do
+      expert = build(:expert, url: 'wombat sox')
+      expect(expert).not_to be_valid
+    end
   end
 end
