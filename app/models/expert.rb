@@ -57,7 +57,7 @@ class Expert < ApplicationRecord
     word_atoms.each do |atom|
       matching_topics = matching_topics.where("content ilike ?", "%#{atom}%")
     end
-    matching_topics.map{|t| t.expert }
+    matching_topics.map{|t| t.expert }.uniq
   end
 
 end
