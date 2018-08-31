@@ -17,11 +17,12 @@
 <% if @topic_experts.blank? %>
   Sorry, no matches were found
 <% else %>
-<p>Experts matching "<%= @search_term %>"</p>
-<% @topic_experts.each do |te| %>
-  <%- if current_user %>
-    <%= link_to "+", add_friend_experts_path(@expert.id, te.id), method: :post, class: 'btn btn-sm btn-primary' %>
+  <p>Experts matching "<%= @search_term %>"</p>
+  <% @topic_experts.each do |te| %>
+    <%- if current_user %>
+      <%= link_to "+", add_friend_experts_path(@expert.id, te.id), method: :post, class: 'btn btn-sm btn-primary' %>
+    <% end %>
+    <%= link_to te.name, te %><br/>
+    <%= introduction_path @expert, te %>
   <% end %>
-  <%= link_to te.name, te %><br/>
-<% end %>
 <% end %>

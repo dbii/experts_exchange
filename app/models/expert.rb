@@ -60,4 +60,17 @@ class Expert < ApplicationRecord
     matching_topics.map{|t| t.expert }.uniq
   end
 
+  # returns a path to the expert in the form of an array of experts, or false if the expert is unreachable
+  def path_to_expert(target, path=[])
+    path << self
+    return path if target == self
+    results = []
+    friends.each do |friend|
+      next if path.include?(friend)                     # been here before
+      new_path = friend.path_to_expert(target, path)
+      results << new_path if new_path
+    end
+    return false if results.empty?                      # termination case
+    return results.sort_by(&:length).reverse.first      # winner winner chicken dinner
+  end
 end
