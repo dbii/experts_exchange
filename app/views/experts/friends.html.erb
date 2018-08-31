@@ -3,9 +3,9 @@
   <% @experts.each do |expert| %>
     <div>
       <% if @expert.friends.include?(expert) %>
-        <%= link_to "-", remove_friend_experts_path(@expert.id, expert.id), method: :delete %>
+        <%= link_to "-", remove_friend_experts_path(@expert.id, expert.id), method: :delete, class: 'btn btn-sm btn-primary' %>
       <% else %>
-        <%= link_to "+", add_friend_experts_path(@expert.id, expert.id), method: :post %>
+        <%= link_to "+", add_friend_experts_path(@expert.id, expert.id), method: :post, class: 'btn btn-sm btn-primary' %>
       <% end %>
       <%= expert.name %>
     </div>
