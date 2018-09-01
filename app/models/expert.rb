@@ -57,7 +57,7 @@ class Expert < ApplicationRecord
     word_atoms.each do |atom|
       matching_topics = matching_topics.where("content ilike ?", "%#{atom}%")
     end
-    matching_topics.map{|t| t.expert }.uniq
+    matching_topics.map{|t| t.expert }.each_with_object(Hash.new(0)) {|expert, counts| counts[expert] += 1}
   end
 
   # returns a path to the expert in the form of an array of experts, or false if the expert is unreachable
