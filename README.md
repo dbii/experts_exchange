@@ -38,10 +38,6 @@ We use open-uri with Nokogiri for URL fetching and parsing
 
 ## Features
 
-3. Friend setup
-3. search
-2. Node walking
-
 ## Robustness Concerns
 
 1. Validation on Expert URL, existence, formatting, etc. Currently we just assume URL will be good, valid, and parsable.
