@@ -34,7 +34,7 @@ class ExpertsController < ApplicationController
 
   def add_friend
     Friendship.create(expert_1_id: @expert.id, expert_2_id: params[:friend_id])
-    redirect_to @expert
+    redirect_to friends_expert_path(@expert)
   end
 
   def remove_friend
@@ -42,11 +42,12 @@ class ExpertsController < ApplicationController
     if friendship
       friendship.destroy
     end
-    redirect_to @expert
+    redirect_to friends_expert_path(@expert)
   end
 
   def search_experts
     @topic_experts = @expert.topic_experts(params[:q])
+    @search_term = params[:q]
   end
 
   private
