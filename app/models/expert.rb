@@ -57,7 +57,20 @@ class Expert < ApplicationRecord
     word_atoms.each do |atom|
       matching_topics = matching_topics.where("content ilike ?", "%#{atom}%")
     end
-    matching_topics.map{|t| t.expert }
+    matching_topics.map{|t| t.expert }.each_with_object(Hash.new(0)) {|expert, counts| counts[expert] += 1}
   end
 
+  # returns a path to the expert in the form of an array of experts, or false if the expert is unreachable
+  def path_to_expert(target, path=[])
+    path << self
+    return path if target == self
+    results = []
+    friends.each do |friend|
+      next if path.include?(friend)                     # been here before
+      new_path = friend.path_to_expert(target, path.clone)
+      results << new_path if new_path
+    end
+    return false if results.empty?                      # termination case
+    return results.sort_by(&:length).first              # winner winner chicken dinner
+  end
 end
