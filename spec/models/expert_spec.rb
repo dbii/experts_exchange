@@ -55,8 +55,8 @@ RSpec.describe Expert, type: :model do
 
       let!(:friendship_3_1) { create :friendship, expert_1_id: expert_3.id, expert_2_id: expert_1.id }
 
-      it "should find a three-step path without getting lost in the circle" do
-        expect(expert_1.path_to_expert(expert_4)).to eq([expert_1, expert_2, expert_3, expert_4])
+      it "should find the shortest path without getting lost in the circle" do
+        expect(expert_1.path_to_expert(expert_4)).to eq([expert_1, expert_3, expert_4])
       end
     end
 
