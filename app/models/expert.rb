@@ -67,10 +67,10 @@ class Expert < ApplicationRecord
     results = []
     friends.each do |friend|
       next if path.include?(friend)                     # been here before
-      new_path = friend.path_to_expert(target, path)
+      new_path = friend.path_to_expert(target, path.clone)
       results << new_path if new_path
     end
     return false if results.empty?                      # termination case
-    return results.sort_by(&:length).reverse.first      # winner winner chicken dinner
+    return results.sort_by(&:length).first              # winner winner chicken dinner
   end
 end
